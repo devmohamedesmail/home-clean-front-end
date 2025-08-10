@@ -1,0 +1,18 @@
+{
+    "homepage":{
+        "nav": {
+            "home": " Home ",
+            "services": " Services ",
+            "contact": " Contact "
+        },
+        "hero":{
+            "title": " Let us Handle Your ",
+            "subtitle": " Home Cleaning",
+            "description": "Our intelligent system searches all available cleaning service companies and provides you with competitive price estimates",
+            "searchaddress": "Enter your address or location",
+            "preferreddate": "Preferred Date",
+            "preferredtime": "Preferred Time",
+            "cta": " Find Cleaning Services "
+        }
+    }
+}
