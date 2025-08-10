@@ -12,7 +12,7 @@ import {
     FaClipboardList,
     FaChartBar
 } from 'react-icons/fa'
-import Image from 'next/image'
+
 import Logo from '../user_components/logo'
 import Link from 'next/link'
 
@@ -40,7 +40,7 @@ export default function CleanerNavbar() {
     const menuItems = [
         { icon: FaHome, label: 'Dashboard', href: '/cleaner/dashboard' },
         { icon: FaCalendarAlt, label: 'Schedule', href: '/cleaner/schedule' },
-        { icon: FaClipboardList, label: 'Tasks', href: '/cleaner/tasks' },
+        { icon: FaClipboardList, label: 'Offers', href: '/cleaner/offers' },
         { icon: FaChartBar, label: 'Orders', href: '/cleaner/orders' },
     ]
 
@@ -88,9 +88,9 @@ export default function CleanerNavbar() {
                         </div>
 
                         {/* Settings */}
-                        <button className="hidden sm:block p-2 rounded-full text-gray-600 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200">
+                        <Link href="/cleaner/settings" className="hidden sm:block p-2 rounded-full text-gray-600 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200">
                             <FaCog className="w-5 h-5" />
-                        </button>
+                        </Link>
 
                         {/* Account Dropdown */}
                         <div className="relative" ref={accountDropdownRef}>

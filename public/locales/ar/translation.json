@@ -1,11 +1,11 @@
 {
-    "homepage":{
+    "homepage": {
         "nav": {
             "home": "الصفحة الرئيسية",
             "services": "الخدمات",
             "contact": "اتصل بنا"
         },
-         "hero":{
+        "hero": {
             "title": " دعنا نتولى أمورك ",
             "subtitle": " تنظيف المنزل",
             "description": "نظامنا الذكي يبحث في جميع شركات خدمات التنظيف المتاحة ويقدم لك تقديرات أسعار تنافسية",
@@ -14,5 +14,31 @@
             "preferredtime": "الوقت المفضل",
             "cta": " ابحث عن خدمات التنظيف "
         }
+    },
+    "cleaner": {
+        "settings": {
+            "title": " صفحة الإعدادات",
+            "subtitle": " تخصيص تفضيلات التنظيف الخاصة بك",
+            "language": " اللغة",
+            "currency": " العملة",
+            "notifications": " الإشعارات",
+            "save": " حفظ التغييرات",
+            "description": " إدارة تفضيلاتك وإعداداتك للتنظيف",
+            "company_name": " اسم الشركة ",
+            "company_address": " عنوان الشركة ",
+            "company_phone": " هاتف الشركة ",
+            "vat_number": "رقم الضريبة المضافة",
+            "business_license": "رخصة العمل",
+            "cleaners_no": "عدد عمال النظافة",
+            "company_description": "وصف الشركة"
+        }
+    },
+    "common":{
+        "name":" الاسم ",
+        "email":" البريد الإلكتروني ",
+        "phone":" الهاتف ",
+        "address":" العنوان ",
+        "city":" المدينة ",
+        "save":" حفظ "
     }
 }

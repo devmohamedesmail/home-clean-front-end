@@ -1,11 +1,11 @@
 {
-    "homepage":{
+    "homepage": {
         "nav": {
             "home": " Home ",
             "services": " Services ",
             "contact": " Contact "
         },
-        "hero":{
+        "hero": {
             "title": " Let us Handle Your ",
             "subtitle": " Home Cleaning",
             "description": "Our intelligent system searches all available cleaning service companies and provides you with competitive price estimates",
@@ -14,5 +14,31 @@
             "preferredtime": "Preferred Time",
             "cta": " Find Cleaning Services "
         }
+    },
+    "cleaner": {
+        "settings": {
+            "title": " Settings Page",
+            "subtitle": " Customize your cleaning preferences",
+            "language": " Language",
+            "currency": " Currency",
+            "notifications": " Notifications",
+            "save": " Save Changes",
+            "description": " Manage your cleaning preferences and settings",
+            "company_name": " Company Name ",
+            "company_address": " Company Address ",
+            "company_phone": " Company Phone ",
+            "vat_number": "VAT Number",
+            "business_license": "Business License",
+            "cleaners_no": "Number of Cleaners",
+            "company_description": "Company Description"
+        }
+    },
+    "common":{
+        "name":" Name ",
+        "email":" Email ",
+        "phone":" Phone ",
+        "address":" Address ",
+        "city":" City ",
+        "save":"Save"
     }
 }
