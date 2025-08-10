@@ -3,7 +3,7 @@
 import { IoMdStar, IoMdCheckmark } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiUsers, FiClock, FiHome } from "react-icons/fi";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Navbar from "../../components/user_components/navbar";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
@@ -103,6 +103,17 @@ const cleaningServices = [
 ];
 
 export default function ResultsPage() {
+    return (
+        <div className='min-h-screen bg-gray-50'>
+            <Navbar />
+            <Suspense fallback={<div>Loading...</div>}>
+                <ResultsContent />
+            </Suspense>
+        </div>
+    )
+}
+
+function ResultsContent() {
     const searchParams = useSearchParams();
     const address = searchParams.get("address");
     const date = searchParams.get("date");
@@ -153,18 +164,8 @@ useEffect(() => {
     fetch_companies_date();
 }, []);
 
-
-
-
-
     return (
-        <div className='min-h-screen bg-gray-50'>
-
-            <Navbar />
-
-
-
-
+        <div>
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b">
                 <div className="container mx-auto px-6 py-6">
