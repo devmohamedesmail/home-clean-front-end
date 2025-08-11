@@ -19,15 +19,15 @@ export default function Login() {
 
 
 
-const formik = useFormik({
-  initialValues: {
-    email: '',
-    password: '',
-  },
-  onSubmit: (values) => {
-    console.log(values);
-  },
-});
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
@@ -49,15 +49,15 @@ const formik = useFormik({
         {/* Login Form */}
         <div className="bg-white rounded-xl shadow-lg p-8">
           <form onSubmit={formik.handleSubmit} className="space-y-6">
-           
-            <CustomInput 
-             label={t('common.email')} 
-             type="email" 
-             name="email"
-             placeholder={t('common.email')} 
-             value={formik.values.email} 
-             onChange={formik.handleChange} 
-             icon={<MdEmail className="h-5 w-5 text-gray-400" />} />
+
+            <CustomInput
+              label={t('common.email')}
+              type="email"
+              name="email"
+              placeholder={t('common.email')}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              icon={<MdEmail className="h-5 w-5 text-gray-400" />} />
 
             {/* Password Field */}
             <div>
@@ -93,15 +93,15 @@ const formik = useFormik({
             </div>
 
             {/* Remember Me & Forgot Password */}
-           
+
             <RememberMe />
 
             {/* Submit Button */}
-           
+
             <CustomSubmitButton isLoading={isLoading} t={t} title={t('common.sign_in')} titleLoading={t('common.signing_in')} />
           </form>
 
-         <SocialLogin />
+          <SocialLogin />
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">

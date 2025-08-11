@@ -39,7 +39,7 @@ export default function CleanerNavbar() {
 
     const menuItems = [
         { icon: FaHome, label: 'Dashboard', href: '/cleaner/dashboard' },
-        { icon: FaCalendarAlt, label: 'Schedule', href: '/cleaner/schedule' },
+        { icon: FaCalendarAlt, label: 'Schedule', href: '/cleaner/booking' },
         { icon: FaClipboardList, label: 'Offers', href: '/cleaner/offers' },
         { icon: FaChartBar, label: 'Orders', href: '/cleaner/orders' },
     ]
