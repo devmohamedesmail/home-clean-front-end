@@ -79,12 +79,12 @@ export default function CleanerNavbar() {
 
                         {/* Notifications */}
                         <div className="relative">
-                            <button className="p-2 rounded-full text-gray-600 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200">
+                            <Link href="/cleaner/notifications" className="p-2 block rounded-full text-gray-600 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200">
                                 <FaBell className="w-5 h-5" />
                                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
                                     3
                                 </span>
-                            </button>
+                            </Link>
                         </div>
 
                         {/* Settings */}
