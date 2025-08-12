@@ -7,6 +7,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { useTranslation } from 'react-i18next';
 import Language_Switcher from '../common_components/language_switcher';
 import Logo from './logo';
+import Link from 'next/link';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,9 +60,11 @@ export default function Navbar() {
                             
                             <Language_Switcher />
                             </div>
-                        <button className='bg-main hover:bg-main/90 text-white px-6 py-2.5 rounded-lg flex items-center gap-2 font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5'>
+                        <button className='bg-main hover:bg-main/90 text-white px-4 py-1 rounded-lg flex items-center gap-2 font-medium transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5'>
                             <FaPhone className="w-4 h-4" />
-                            <span>Call Us</span>
+                            <span className='font-bold'>
+                                {t('homepage.nav.contact')}
+                            </span>
                         </button>
                     </div>
 
@@ -85,19 +88,22 @@ export default function Navbar() {
                 {isMenuOpen && (
                     <div className='md:hidden border-t border-gray-100'>
                         <div className='px-2 pt-2 pb-3 space-y-1 bg-white'>
-                            <a href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
+                            <Link href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
                                 Home
-                            </a>
-                            <a href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
-                                Services
-                            </a>
-                            <a href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
-                                Contact
-                            </a>
+                                {t('homepage.nav.home')}
+                            </Link>
+                            <Link href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
+                                
+                                {t('homepage.nav.services')}
+                            </Link>
+                            <Link href="#" className='block px-3 py-3 text-gray-700 hover:text-main hover:bg-gray-50 rounded-lg font-medium transition-all duration-200'>
+                                
+                                {t('homepage.nav.contact')}
+                            </Link>
                             <div className='pt-2'>
-                                <button className='w-full bg-main hover:bg-main/90 text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 font-medium transition-all duration-200'>
+                                <button className='w-full bg-main hover:bg-main/90 text-white px-2 py-1 rounded-lg flex items-center justify-center gap-2 font-medium transition-all duration-200'>
                                     <FaPhone className="w-4 h-4" />
-                                    <span>Call Us</span>
+                                    <span>{t('homepage.nav.contact')}</span>
                                 </button>
                             </div>
                         </div>

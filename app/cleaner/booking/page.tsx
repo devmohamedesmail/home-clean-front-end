@@ -1,8 +1,14 @@
 'use client'
-'use client'
+import BookingStatsCards from '@/app/components/cleaner_components/booking_stats_cards'
+import CustomInput from '@/app/custom/custom_input'
+import CleanerBookingItem from '@/app/items/cleaner_booking_item'
 import React, { useState } from 'react'
-import { FaPlus, FaCalendarAlt, FaClock, FaUsers, FaDollarSign, FaEdit, FaTrash, FaEye } from 'react-icons/fa'
-import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md'
+import { useTranslation } from 'react-i18next'
+import { FaPlus } from 'react-icons/fa'
+import { FiUser } from "react-icons/fi";
+import { FaPhoneAlt } from "react-icons/fa";
+import { CiLocationOn } from "react-icons/ci";
+import { CiCalendarDate } from "react-icons/ci";
 
 interface Booking {
   id: string
@@ -19,6 +25,7 @@ interface Booking {
 }
 
 export default function BookingPage() {
+  const { t } = useTranslation()
   const [bookings, setBookings] = useState<Booking[]>([
     {
       id: '1',
@@ -112,7 +119,7 @@ export default function BookingPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const booking: Booking = {
       id: Date.now().toString(),
       customerName: newBooking.customerName,
@@ -142,17 +149,9 @@ export default function BookingPage() {
     setIsModalOpen(false)
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending': return 'badge-warning'
-      case 'confirmed': return 'badge-info'
-      case 'completed': return 'badge-success'
-      case 'cancelled': return 'badge-error'
-      default: return 'badge-neutral'
-    }
-  }
+ 
 
-  const filteredBookings = bookings.filter(booking => 
+  const filteredBookings = bookings.filter(booking =>
     filter === 'all' || booking.status === filter
   )
 
@@ -169,93 +168,53 @@ export default function BookingPage() {
       {/* Header */}
       <div className='flex justify-between items-center mb-8'>
         <div>
-          <h1 className='text-3xl font-bold text-gray-900 mb-2'>Booking Management</h1>
-          <p className='text-gray-600'>Manage your cleaning service bookings</p>
+          <h1 className='text-3xl font-bold text-gray-900 mb-2'>
+            {t('cleaner.booking.title')}
+          </h1>
+          <p className='text-gray-600'>
+            {t('cleaner.booking.description')}
+          </p>
         </div>
-        <button 
-          className='btn bg-main hover:bg-blue-700 text-white border-none'
+        <button
+          className='btn bg-main hover:bg-second text-white border-none rounded '
           onClick={() => setIsModalOpen(true)}
         >
           <FaPlus className='mr-2' />
-          New Booking
+
+          {t('cleaner.booking.create_new_booking')}
         </button>
       </div>
 
       {/* Stats Cards */}
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8'>
-        <div className='bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-gray-600'>Total Bookings</p>
-              <p className='text-2xl font-bold text-gray-900'>{stats.total}</p>
-            </div>
-            <FaCalendarAlt className='text-blue-500 text-2xl' />
-          </div>
-        </div>
-        <div className='bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-gray-600'>Pending</p>
-              <p className='text-2xl font-bold text-gray-900'>{stats.pending}</p>
-            </div>
-            <FaClock className='text-yellow-500 text-2xl' />
-          </div>
-        </div>
-        <div className='bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-400'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-gray-600'>Confirmed</p>
-              <p className='text-2xl font-bold text-gray-900'>{stats.confirmed}</p>
-            </div>
-            <FaUsers className='text-blue-400 text-2xl' />
-          </div>
-        </div>
-        <div className='bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-gray-600'>Completed</p>
-              <p className='text-2xl font-bold text-gray-900'>{stats.completed}</p>
-            </div>
-            <FaCalendarAlt className='text-green-500 text-2xl' />
-          </div>
-        </div>
-        <div className='bg-white rounded-lg shadow-md p-6 border-l-4 border-green-600'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-gray-600'>Revenue</p>
-              <p className='text-2xl font-bold text-gray-900'>${stats.totalRevenue}</p>
-            </div>
-            <FaDollarSign className='text-green-600 text-2xl' />
-          </div>
-        </div>
-      </div>
+      <BookingStatsCards stats={stats} t={t} />
 
       {/* Filters */}
       <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
         <div className='flex flex-wrap gap-2'>
-          <button 
+          <button
             className={`btn btn-sm ${filter === 'all' ? 'bg-main text-white' : 'btn-outline'}`}
             onClick={() => setFilter('all')}
           >
-            All Bookings
+            
+            {t('cleaner.booking.all_bookings')}
           </button>
-          <button 
+          <button
             className={`btn btn-sm ${filter === 'pending' ? 'btn-warning' : 'btn-outline'}`}
             onClick={() => setFilter('pending')}
           >
-            Pending
+            {t('cleaner.booking.pending')}
           </button>
-          <button 
+          <button
             className={`btn btn-sm ${filter === 'confirmed' ? 'btn-info' : 'btn-outline'}`}
             onClick={() => setFilter('confirmed')}
           >
-            Confirmed
+            {t('cleaner.booking.confirmed')}
           </button>
-          <button 
+          <button
             className={`btn btn-sm ${filter === 'completed' ? 'btn-success' : 'btn-outline'}`}
             onClick={() => setFilter('completed')}
           >
-            Completed
+            {t('cleaner.booking.completed')}
           </button>
         </div>
       </div>
@@ -263,97 +222,7 @@ export default function BookingPage() {
       {/* Bookings Grid */}
       <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
         {filteredBookings.map(booking => (
-          <div key={booking.id} className='bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200'>
-            <div className='p-6'>
-              {/* Header */}
-              <div className='flex justify-between items-start mb-4'>
-                <div>
-                  <h3 className='text-lg font-semibold text-gray-900'>{booking.customerName}</h3>
-                  <span className={`badge ${getStatusColor(booking.status)} badge-sm`}>
-                    {booking.status}
-                  </span>
-                </div>
-                <div className='flex gap-2'>
-                  <button className='btn btn-sm btn-ghost text-blue-600'>
-                    <FaEye />
-                  </button>
-                  <button className='btn btn-sm btn-ghost text-green-600'>
-                    <FaEdit />
-                  </button>
-                  <button className='btn btn-sm btn-ghost text-red-600'>
-                    <FaTrash />
-                  </button>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className='space-y-2 mb-4'>
-                <div className='flex items-center text-sm text-gray-600'>
-                  <MdPhone className='mr-2 text-gray-400' />
-                  {booking.customerPhone}
-                </div>
-                <div className='flex items-center text-sm text-gray-600'>
-                  <MdEmail className='mr-2 text-gray-400' />
-                  {booking.customerEmail}
-                </div>
-                <div className='flex items-start text-sm text-gray-600'>
-                  <MdLocationOn className='mr-2 text-gray-400 mt-0.5' />
-                  {booking.address}
-                </div>
-              </div>
-
-              {/* Booking Details */}
-              <div className='grid grid-cols-2 gap-4 mb-4'>
-                <div className='flex items-center text-sm'>
-                  <FaCalendarAlt className='mr-2 text-blue-500' />
-                  <span className='font-medium'>{booking.date}</span>
-                </div>
-                <div className='flex items-center text-sm'>
-                  <FaClock className='mr-2 text-green-500' />
-                  <span className='font-medium'>{booking.time}</span>
-                </div>
-                <div className='flex items-center text-sm'>
-                  <FaUsers className='mr-2 text-purple-500' />
-                  <span className='font-medium'>{booking.workers} Workers</span>
-                </div>
-                <div className='flex items-center text-sm'>
-                  <FaDollarSign className='mr-2 text-green-600' />
-                  <span className='font-bold text-green-600'>${booking.price}</span>
-                </div>
-              </div>
-
-              {/* Services */}
-              <div className='mb-4'>
-                <p className='text-sm font-medium text-gray-700 mb-2'>Services:</p>
-                <div className='flex flex-wrap gap-1'>
-                  {booking.services.map((service, index) => (
-                    <span key={index} className='badge badge-outline badge-sm'>
-                      {service}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className='flex gap-2'>
-                {booking.status === 'pending' && (
-                  <button className='btn btn-sm bg-main text-white border-none hover:bg-blue-700 flex-1'>
-                    Confirm
-                  </button>
-                )}
-                {booking.status === 'confirmed' && (
-                  <button className='btn btn-sm btn-success text-white flex-1'>
-                    Mark Complete
-                  </button>
-                )}
-                {booking.status === 'completed' && (
-                  <button className='btn btn-sm btn-outline flex-1'>
-                    View Details
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
+          <CleanerBookingItem key={booking.id} booking={booking} t={t} />
         ))}
       </div>
 
@@ -362,107 +231,66 @@ export default function BookingPage() {
         <div className="modal modal-open">
           <div className="modal-box max-w-2xl">
             <div className='flex justify-between items-center mb-6'>
-              <h3 className="font-bold text-xl">Create New Booking</h3>
-              <button 
+              <h3 className="font-bold text-xl">
+                {t('cleaner.booking.create_new_booking')}
+              </h3>
+              <button
                 className="btn btn-sm btn-circle btn-ghost"
                 onClick={() => setIsModalOpen(false)}
               >
                 ✕
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Customer Information */}
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Customer Name</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="customerName"
-                    value={newBooking.customerName}
-                    onChange={handleInputChange}
-                    className="input input-bordered w-full"
-                    placeholder="Enter customer name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Phone Number</span>
-                  </label>
-                  <input
-                    type="tel"
-                    name="customerPhone"
-                    value={newBooking.customerPhone}
-                    onChange={handleInputChange}
-                    className="input input-bordered w-full"
-                    placeholder="Enter phone number"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="label">
-                  <span className="label-text font-medium">Email Address</span>
-                </label>
-                <input
-                  type="email"
-                  name="customerEmail"
-                  value={newBooking.customerEmail}
+                
+                <CustomInput 
+                  name="name"
+                  icon={<FiUser />}
+                  label={t('common.name')}
+                  value={newBooking.customerName}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full"
-                  placeholder="Enter email address"
-                  required
+                  placeholder={t('common.name')}
+                  
+                />
+                <CustomInput
+                  name="phone"
+                  icon={<FaPhoneAlt />}
+                  label={t('common.phone')}
+                  value={newBooking.customerPhone}
+                  onChange={handleInputChange}
+                  placeholder={t('common.phone')}
                 />
               </div>
 
-              <div>
-                <label className="label">
-                  <span className="label-text font-medium">Service Address</span>
-                </label>
-                <input
-                  type="text"
+            
+
+              
+
+              <CustomInput
                   name="address"
+                  icon={<CiLocationOn />}
+                  label={t('common.address')}
                   value={newBooking.address}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full"
-                  placeholder="Enter service address"
-                  required
+                  placeholder={t('common.address')}
                 />
-              </div>
+
+
+                <CustomInput
+                  name="date"
+                  type="date"
+                  icon={<CiCalendarDate />}
+                  label={t('common.date')}
+                  value={newBooking.date}
+                  onChange={handleInputChange}
+                  placeholder={t('common.address')}
+                />
 
               {/* Booking Details */}
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Date</span>
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={newBooking.date}
-                    onChange={handleInputChange}
-                    className="input input-bordered w-full"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Time</span>
-                  </label>
-                  <input
-                    type="time"
-                    name="time"
-                    value={newBooking.time}
-                    onChange={handleInputChange}
-                    className="input input-bordered w-full"
-                    required
-                  />
-                </div>
-              </div>
+              
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div>
@@ -483,22 +311,16 @@ export default function BookingPage() {
                     <option value={5}>5+ Workers</option>
                   </select>
                 </div>
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Price ($)</span>
-                  </label>
-                  <input
-                    type="number"
-                    name="price"
-                    value={newBooking.price}
-                    onChange={handleInputChange}
-                    className="input input-bordered w-full"
-                    placeholder="Enter price"
-                    min="0"
-                    step="0.01"
-                    required
-                  />
-                </div>
+                
+                <CustomInput
+                  name="time"
+                  type="time"
+                  icon={<CiCalendarDate />}
+                  label={t('common.time')}
+                  value={newBooking.time}
+                  onChange={handleInputChange}
+                  placeholder={t('common.address')}
+                />
               </div>
 
               <div>
@@ -517,15 +339,15 @@ export default function BookingPage() {
               </div>
 
               <div className="modal-action">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn btn-outline"
                   onClick={() => setIsModalOpen(false)}
                 >
-                  Cancel
+                  {t('common.cancel')}
                 </button>
                 <button type="submit" className="btn bg-main text-white border-none hover:bg-blue-700">
-                  Create Booking
+                  {t('common.save')}
                 </button>
               </div>
             </form>

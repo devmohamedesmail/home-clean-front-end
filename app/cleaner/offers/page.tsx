@@ -1,5 +1,11 @@
 'use client'
+import CustomInput from '@/app/custom/custom_input';
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { MdTitle } from "react-icons/md";
+import { MdGroup } from "react-icons/md";
+import { BiDollar } from "react-icons/bi";
+import Cleaner_Offer_Item from '@/app/items/cleaner_offer_item';
 
 interface Offer {
     id: number;
@@ -11,6 +17,7 @@ interface Offer {
 }
 
 export default function OffersPage() {
+    const { t } = useTranslation()
     const [offers, setOffers] = useState<Offer[]>([
         {
             id: 1,
@@ -48,7 +55,7 @@ export default function OffersPage() {
 
     const serviceOptions = [
         "Disinfection",
-        "Extra Textile Clean", 
+        "Extra Textile Clean",
         "Air Purification",
         "Window Cleaning",
         "Carpet Deep Clean",
@@ -86,7 +93,7 @@ export default function OffersPage() {
             ...formData
         };
         setOffers([...offers, newOffer]);
-        
+
         // Reset form
         setFormData({
             name: '',
@@ -95,7 +102,7 @@ export default function OffersPage() {
             options: [],
             availableDays: []
         });
-        
+
         // Close modal
         (document.getElementById('offer_modal') as HTMLDialogElement)?.close();
     };
@@ -105,76 +112,25 @@ export default function OffersPage() {
             {/* Header */}
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-800">My Offers</h1>
-                    <p className="text-gray-600 mt-2">Manage your cleaning service offers</p>
+                    <h1 className="text-3xl font-bold text-gray-800">
+                        {t('cleaner.offers.title')}
+                    </h1>
+                    <p className="text-gray-600 mt-2">
+                        {t('cleaner.offers.description')}
+                    </p>
                 </div>
-                <button 
-                    className="bg-main hover:bg-main/90 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 shadow-md"
+                <button
+                    className="bg-main hover:bg-main/90 text-white px-5 py-3 text-xs rounded-lg font-medium transition-colors duration-200 shadow-sm"
                     onClick={() => (document.getElementById('offer_modal') as HTMLDialogElement)?.showModal()}
                 >
-                    + Create New Offer
+                    {t('cleaner.offers.create')}
                 </button>
             </div>
 
             {/* Offers Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {offers.map((offer) => (
-                    <div key={offer.id} className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
-                        <div className="mb-4">
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">{offer.name}</h3>
-                            <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-                                <span className="flex items-center">
-                                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    {offer.cleaners} Cleaners
-                                </span>
-                                <span className="text-main font-bold text-lg">${offer.rate}/hr</span>
-                            </div>
-                        </div>
-
-                        {/* Service Options */}
-                        <div className="mb-4">
-                            <h4 className="font-medium text-gray-700 mb-2">Services Included:</h4>
-                            <div className="flex flex-wrap gap-1">
-                                {offer.options.map((option, index) => (
-                                    <span 
-                                        key={index}
-                                        className="bg-main/10 text-main px-2 py-1 rounded-full text-xs font-medium"
-                                    >
-                                        {option}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Available Days */}
-                        <div>
-                            <h4 className="font-medium text-gray-700 mb-2">Available Days:</h4>
-                            <div className="flex flex-wrap gap-1">
-                                {offer.availableDays.map((day, index) => (
-                                    <span 
-                                        key={index}
-                                        className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium"
-                                    >
-                                        {day.slice(0, 3)}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Actions */}
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                            <div className="flex gap-2">
-                                <button className="flex-1 bg-main/10 text-main py-2 rounded-lg font-medium hover:bg-main/20 transition-colors duration-200">
-                                    Edit
-                                </button>
-                                <button className="flex-1 bg-red-50 text-red-600 py-2 rounded-lg font-medium hover:bg-red-100 transition-colors duration-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <Cleaner_Offer_Item offer={offer} t={t} />
                 ))}
             </div>
 
@@ -184,59 +140,64 @@ export default function OffersPage() {
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    
-                    <h3 className="font-bold text-2xl mb-6 text-gray-800">Create New Offer</h3>
-                    
+
+                    <h3 className="font-bold text-2xl mb-6 text-gray-800">
+                        {t('cleaner.offers.create')}
+                    </h3>
+
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Offer Name */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Offer Name</label>
-                            <input 
-                                type="text" 
-                                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-main focus:ring-2 focus:ring-main/20"
-                                placeholder="e.g., Deep Clean Package"
+                            {/* <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('cleaner.offers.offer_title')}
+                            </label> */}
+
+                            <CustomInput
+                                label={t('cleaner.offers.offer_title')}
+                                icon={<MdTitle />}
+                                type="text"
+                                placeholder={t('cleaner.offers.offer_title')}
                                 value={formData.name}
-                                onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
-                                required
+                                onChange={(e: any) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+
                             />
                         </div>
 
                         {/* Number of Cleaners & Rate */}
                         <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Number of Cleaners</label>
-                                <input 
-                                    type="number" 
-                                    min="1"
-                                    max="10"
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-main focus:ring-2 focus:ring-main/20"
-                                    value={formData.cleaners}
-                                    onChange={(e) => setFormData(prev => ({...prev, cleaners: parseInt(e.target.value)}))}
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Rate per Hour ($)</label>
-                                <input 
-                                    type="number" 
-                                    min="0"
-                                    step="0.01"
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-main focus:ring-2 focus:ring-main/20"
-                                    placeholder="25.00"
-                                    value={formData.rate}
-                                    onChange={(e) => setFormData(prev => ({...prev, rate: parseFloat(e.target.value)}))}
-                                    required
-                                />
-                            </div>
+
+                            <CustomInput
+                                label={t('cleaner.offers.number_of_cleaners')}
+                                icon={<MdGroup />}
+                                type="number"
+                                min="1"
+                                max="10"
+                                value={formData.cleaners}
+                                onChange={(e: any) => setFormData(prev => ({ ...prev, cleaners: parseInt(e.target.value) }))}
+                            />
+
+
+                            <CustomInput
+                                label={t('cleaner.offers.rate_per_hour')}
+                                icon={<BiDollar />}
+                                type="number"
+                                min="1"
+                                max="10"
+                                value={formData.cleaners}
+                                placeholder="25.00"
+                                onChange={(e: any) => setFormData(prev => ({ ...prev, cleaners: parseInt(e.target.value) }))}
+                            />
                         </div>
 
                         {/* Service Options */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">Service Options</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-3">
+                                {t('cleaner.offers.service_options')}
+                            </label>
                             <div className="grid grid-cols-2 gap-3">
                                 {serviceOptions.map((option) => (
                                     <label key={option} className="flex items-center space-x-3 cursor-pointer">
-                                        <input 
+                                        <input
                                             type="checkbox"
                                             checked={formData.options.includes(option)}
                                             onChange={() => handleOptionChange(option)}
@@ -250,11 +211,13 @@ export default function OffersPage() {
 
                         {/* Available Days */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">Available Days</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-3">
+                                {t('cleaner.offers.available_days')}
+                            </label>
                             <div className="grid grid-cols-4 gap-3">
                                 {weekDays.map((day) => (
                                     <label key={day} className="flex items-center space-x-2 cursor-pointer">
-                                        <input 
+                                        <input
                                             type="checkbox"
                                             checked={formData.availableDays.includes(day)}
                                             onChange={() => handleDayChange(day)}
@@ -268,18 +231,19 @@ export default function OffersPage() {
 
                         {/* Submit Button */}
                         <div className="flex gap-3 pt-4">
-                            <button 
+                            <button
                                 type="button"
                                 className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200"
                                 onClick={() => (document.getElementById('offer_modal') as HTMLDialogElement)?.close()}
                             >
-                                Cancel
+                                
+                                {t('common.cancel')}
                             </button>
-                            <button 
+                            <button
                                 type="submit"
                                 className="flex-1 bg-main text-white py-3 rounded-lg font-medium hover:bg-main/90 transition-colors duration-200"
                             >
-                                Create Offer
+                                {t('common.save')}
                             </button>
                         </div>
                     </form>

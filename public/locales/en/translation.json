@@ -31,6 +31,50 @@
             "business_license": "Business License",
             "cleaners_no": "Number of Cleaners",
             "company_description": "Company Description"
+        },
+        "navbar": {
+            "dashboard": " Dashboard ",
+            "schedule": " Schedule ",
+            "offers": " Offers ",
+            "orders": " Orders ",
+            "notifications": " Notifications ",
+            "account": " Account ",
+            "logout": " Logout "  
+        },
+        "offers": {
+            "title": " My Offers ",
+            "description": " Manage your cleaning service offers ",
+            "create": " Create New Offer ",
+            "offer_title": " Offer Title ",
+            "number_of_cleaners": " Number of Cleaners ",
+            "rate_per_hour": " Rate Per Hour ",
+            "service_options": " Service Options ",
+            "available_days": " Available Days ",
+            "cleaners": " Cleaners "
+        },
+        "booking": {
+            "title": " Booking Management",
+            "description": " Manage your cleaning service bookings",
+            "create_new_booking": " Create New Booking ",
+            "view_details": " View Details ",
+            "edit_booking": " Edit Booking ",
+            "delete_booking": " Delete Booking ",
+            "booking_date": " Booking Date ",
+            "booking_time": " Booking Time ",
+            "customer_name": " Customer Name ",
+            "customer_phone": " Customer Phone ",
+            "status": " Status ",
+            "total_bookings": " Total Bookings ",
+            "pending": " Pending ",
+            "confirmed": " Confirmed ",
+            "completed": " Completed ",
+            "cancelled": " Cancelled ",
+            "revenue": " Revenue ",
+            "all_bookings": " All Bookings ",
+            "workers": " Workers ",
+            "services": " Services ",
+            "confirm": " Confirm ",
+            "mark_complete": " Mark Complete "  
         }
     },
     "common":{
@@ -61,6 +105,12 @@
         "agree_terms":"I agree to the",
         "creating_account":" Creating Account...",
         "have_account":" Already have an account?",
-        "sign_in_here":" Sign in here "
+        "sign_in_here":" Sign in here ",
+        "cancel":" Cancel ",
+        "edit":" Edit ",
+        "pause":" Pause ",
+        "delete":" Delete ",
+        "date":" Date ",
+        "time":" Time "
     }
 }

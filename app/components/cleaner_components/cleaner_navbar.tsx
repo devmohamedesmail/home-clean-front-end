@@ -15,11 +15,14 @@ import {
 
 import Logo from '../user_components/logo'
 import Link from 'next/link'
+import Language_Switcher from '../common_components/language_switcher'
+import { useTranslation } from 'react-i18next'
 
 export default function CleanerNavbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false)
     const accountDropdownRef = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation()
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -38,10 +41,10 @@ export default function CleanerNavbar() {
     }, [isAccountDropdownOpen])
 
     const menuItems = [
-        { icon: FaHome, label: 'Dashboard', href: '/cleaner/dashboard' },
-        { icon: FaCalendarAlt, label: 'Schedule', href: '/cleaner/booking' },
-        { icon: FaClipboardList, label: 'Offers', href: '/cleaner/offers' },
-        { icon: FaChartBar, label: 'Orders', href: '/cleaner/orders' },
+        { icon: FaHome, label: t('cleaner.navbar.dashboard'), href: '/cleaner' },
+        { icon: FaCalendarAlt, label: t('cleaner.navbar.schedule'), href: '/cleaner/booking' },
+        { icon: FaClipboardList, label: t('cleaner.navbar.offers'), href: '/cleaner/offers' },
+        { icon: FaChartBar, label: t('cleaner.navbar.orders'), href: '/cleaner/orders' },
     ]
 
     const toggleMobileMenu = () => {
@@ -76,7 +79,7 @@ export default function CleanerNavbar() {
 
                     {/* Right Side Icons */}
                     <div className="flex items-center space-x-4">
-
+                          <Language_Switcher />
                         {/* Notifications */}
                         <div className="relative">
                             <Link href="/cleaner/notifications" className="p-2 block rounded-full text-gray-600 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200">
