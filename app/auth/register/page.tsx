@@ -81,11 +81,19 @@ export default function Register() {
                             icon={<MdEmail color="black" className="h-5 w-5 text-gray-400" />}
                         />
 
-                        {/* Phone Field */}
+                     <CustomInput
+                            label={t('common.password')}
+                            type="password"
+                            name="password"
+                            placeholder={t('common.password')}
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            icon={<MdLock color="black" className="h-5 w-5 text-gray-400" />}
+                        />
 
 
                         {/* Password Fields */}
-                        <div>
+                        {/* <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                                 {t('common.password')}
                             </label>
@@ -115,7 +123,7 @@ export default function Register() {
                                     )}
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Terms and Conditions */}
                         <div className="flex items-start">
@@ -146,6 +154,7 @@ export default function Register() {
                         <CustomSubmitButton
                             isLoading={isLoading}
                             t={t}
+                            i18n={i18n}
                             title={t('common.create_account')}
                             titleLoading={t('common.creating_account')} />
                     </form>

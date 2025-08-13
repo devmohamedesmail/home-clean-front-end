@@ -75,6 +75,14 @@
             "services": " الخدمات ",
             "confirm": " تأكيد ",
             "mark_complete": " وضع علامة كمكتمل "
+        },
+        "dashboard": {
+            "total_bookings":" إجمالي الحجوزات ",
+            "total_revenue":" إجمالي الإيرادات ",
+            "pending_payments":" المدفوعات المعلقة ",
+            "completed_jobs":" الوظائف المكتملة ",
+            "customer_feedback":" ملاحظات العملاء ",
+            "new_booking":" حجز جديد "
         }
     },
     "common": {

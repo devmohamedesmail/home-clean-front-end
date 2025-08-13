@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { MdEmail, MdLock } from 'react-icons/md'
@@ -10,12 +10,14 @@ import SocialLogin from '@/app/components/user_components/social_login'
 import CustomSubmitButton from '@/app/custom/custom_submit_button'
 import { useFormik } from 'formik';
 import RememberMe from '@/app/components/user_components/remember_me'
+import { AuthContext } from '@/app/context/auth_context'
 
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false)
+
   const [isLoading, setIsLoading] = useState(false)
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation();
+
 
 
 
@@ -57,40 +59,20 @@ export default function Login() {
               placeholder={t('common.email')}
               value={formik.values.email}
               onChange={formik.handleChange}
-              icon={<MdEmail className="h-5 w-5 text-gray-400" />} />
+              icon={<MdEmail className="h-5 w-5 text-gray-400" />} 
+            />
 
-            {/* Password Field */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+          
 
-                {t('common.password')}
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MdLock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-black rounded-lg  focus:border-main"
-                  placeholder="Enter your password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
-                  ) : (
-                    <FaEye className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
-                  )}
-                </button>
-              </div>
-            </div>
+            <CustomInput
+              label={t('common.password')}
+              type="password"
+              name="password"
+              placeholder={t('common.password')}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              icon={<MdLock className="h-5 w-5 text-gray-400" />} 
+            />
 
             {/* Remember Me & Forgot Password */}
 
@@ -98,7 +80,12 @@ export default function Login() {
 
             {/* Submit Button */}
 
-            <CustomSubmitButton isLoading={isLoading} t={t} title={t('common.sign_in')} titleLoading={t('common.signing_in')} />
+            <CustomSubmitButton
+              i18n={i18n}
+              isLoading={isLoading}
+              t={t}
+              title={t('common.sign_in')}
+              titleLoading={t('common.signing_in')} />
           </form>
 
           <SocialLogin />

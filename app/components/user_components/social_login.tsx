@@ -3,7 +3,7 @@ import {  FaGoogle, FaFacebook } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 
 export default function SocialLogin() {
-    const { t } = useTranslation()
+    const { t , i18n } = useTranslation()
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default function SocialLogin() {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">{t('common.or_continue_with')}</span>
+                <span className={`px-2 bg-white text-gray-500 ${i18n.language === 'ar' ? 'arabic-font' : ''}`}>{t('common.or_continue_with')}</span>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@ export default function SocialLogin() {
             <button
               type="button"
               onClick={() => {}}
-              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md"
+              className={`flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md ${i18n.language === 'ar' ? 'arabic-font' : ''}`}
             >
               <FaGoogle className="h-5 w-5 text-red-500 mr-2" />
 
@@ -34,7 +34,7 @@ export default function SocialLogin() {
             <button
               type="button"
               onClick={() => {}}
-              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md"
+              className={`flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md ${i18n.language === 'ar' ? 'arabic-font' : ''}`}
             >
               <FaFacebook className="h-5 w-5 text-blue-600 mr-2" />
               {t('common.facebook')}

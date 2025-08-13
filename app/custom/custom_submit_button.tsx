@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CustomSubmitButton({ isLoading, t , title , titleLoading }: any) {
+export default function CustomSubmitButton({ isLoading, t , i18n , title , titleLoading }: any) {
     return (
         <button
             type="submit"
@@ -10,13 +10,10 @@ export default function CustomSubmitButton({ isLoading, t , title , titleLoading
             {isLoading ? (
                 <div className="flex items-center justify-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-
-                    {/* {t('common.signing_in')} */}
                     {titleLoading}
                 </div>
             ) : (
-                <div className="flex items-center justify-center">
-                    {/* {t('common.sign_in')} */}
+                <div className={`flex items-center justify-center ${i18n.language === 'ar' ? 'arabic-font' : ''}`}>
                     {title}
                 </div>
             )}

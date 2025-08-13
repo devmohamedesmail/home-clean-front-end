@@ -22,7 +22,7 @@ export default function CleanerNavbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false)
     const accountDropdownRef = useRef<HTMLDivElement>(null)
-    const { t } = useTranslation()
+    const { t , i18n } = useTranslation()
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -69,7 +69,7 @@ export default function CleanerNavbar() {
                             <Link
                                 key={index}
                                 href={item.href}
-                                className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200"
+                                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[--color-main] hover:bg-gray-50 transition-colors duration-200 ${i18n.language === 'ar' ? 'text-right arabic-font' : ''}`}
                             >
                                 <item.icon className="w-4 h-4" />
                                 <span>{item.label}</span>

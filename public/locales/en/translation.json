@@ -75,6 +75,14 @@
             "services": " Services ",
             "confirm": " Confirm ",
             "mark_complete": " Mark Complete "  
+        },
+        "dashboard": {
+            "total_bookings":" Total Bookings ",
+            "total_revenue":" Total Revenue ",
+            "pending_payments":" Pending Payments ",
+            "completed_jobs":" Completed Jobs ",
+            "customer_feedback":" Customer Feedback ",
+            "new_booking":" New Booking "
         }
     },
     "common":{
